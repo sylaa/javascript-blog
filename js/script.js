@@ -86,7 +86,21 @@ function generateTitleLinks(customSelector = '') {
 
 generateTitleLinks();
 
-// function calculaateTagsParams();
+function calculateTagsParams(tags){
+  const params = { max : 0, min : 999999 };
+
+  for(let tag in tags){
+    if(tags[tag] > params.max){
+      params.max = tags[tag];
+    }
+    
+    if (tags[tag] < params.min){
+      params.min = tags[tag];
+    }
+    console.log(`${tag} 'is used' ${tags[tag]} 'times'`);
+  }
+  return params;
+}
 
 function generateTags(){
   /* [NEW] create a new variable allTags with an empty object */
@@ -126,8 +140,8 @@ function generateTags(){
   /* [NEW] find list of tags in right column */
   const tagList = document.querySelector('.tags');
 
-  // const tagsParams = calculaateTagsParams(allTags);
-  // console.log('tagsParams:', tagsParams);
+  const tagsParams = calculateTagsParams(allTags);
+  console.log('tagsParams:', tagsParams);
   /* [NEW] create variable for all links HTML code */
   let allTagsHTML = '';
   /* [NEW] START LOOP: for each tag in allTags: */

@@ -122,3 +122,23 @@ body {
     margin: 0 10px 0 0;
   }
 }
+
+.list.tags li {
+  display: inline;
+  margin: 2px;
+}
+
+.tag-size-5 {
+  color : purple;
+  font-size: 30px;
+}
+
+.tag-size-3{
+  color: lightsalmon;
+  font-size: 20px;
+}
+
+.tag-size-1 {
+  color: lightskyblue;
+  font-size: 15px;
+}

@@ -45,7 +45,7 @@ const optTitleSelector = '.post-title';
 const optTitleListSelector = '.titles';
 const optArticleTagsSelector = '.post-tags .list';
 const optArticleAuthorSelector = '.post-author';
-const optTagsListSelector = '.tags.list';
+// const optTagsListSelector = '.tags.list';
 const optCloudClassCount = 5;
 const optCloudClassPrefix = 'tag-size-';
 
@@ -104,39 +104,60 @@ function calculateTagsParams(tags){
   return params;
 }
 
-function calculateTagClass(count, params){}
+function calculateTagClass(count, params){
+
+  const normalizedCount = count - params.min;
+  const normalizedMax = params.max - params.min;
+  const percentage = normalizedCount / normalizedMax;
+  const classNumber = Math.floor( percentage * (optCloudClassCount - 1) + 1 );
+
+  return optCloudClassPrefix + classNumber;
+}
 
 function generateTags(){
   /* [NEW] create a new variable allTags with an empty object */
   let allTags = {};
+
   /* find all articles */
   const articles = document.querySelectorAll(optArticleSelector);
+
   /* START LOOP: for every article: */
   for (let article of articles) {
+
     /* find tags wrapper */
     const tagsWrapper = article.querySelector(optArticleTagsSelector);
+
     /* make html variable with empty string */
     let html = ' ';
+
     /* get tags from data-tags attribute */
     const articleTags = article.getAttribute('data-tags');
+
     /* split tags into array */
     const articleTagsArray = articleTags.split(' ');
+
     /* START LOOP: for each tag */
     for(let tag of articleTagsArray){
+
       /* generate HTML of the link */
       const linkHTML = `<li><a href="#tag-${ tag }">${ tag }</a></li>`;
       console.log(linkHTML);
+
       /* add generated code to html variable */
       html += linkHTML;
+
       /* [NEW] check if this link is NOT already in allTags */
-      if(!allTags.hasOwnProperty(tag)){
+      if(!allTags[tag]){
+
         /* [NEW] add tag to allTags object */
         allTags[tag] = 1;
       } else {
         allTags[tag]++;
       }
+
     /* END LOOP: for each tag */
     }
+
     /* insert HTML of all the links into the tags wrapper */
     tagsWrapper.innerHTML = html;
   /* END LOOP: for every article: */

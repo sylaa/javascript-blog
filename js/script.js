@@ -297,7 +297,7 @@ function authorClickHandler(event) {
   /* END LOOP: for each active author link */
   }
   /* find all author links with "href" attribute equal to the "href" constant */
-  const authorLinksHref = document.querySelectorAll(`a[href=" ${ href }" ]`);
+  const authorLinksHref = document.querySelectorAll(`a[href="${ href }" ]`);
   /* START LOOP: for each found author link */
   for(let authorLinkHref of authorLinksHref){
   /* add class active */

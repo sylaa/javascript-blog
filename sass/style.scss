@@ -124,7 +124,7 @@ body {
 }
 
 .list.tags li {
-  display: inline;
+  display: inline-block;
   margin: 2px;
 }
 
@@ -139,6 +139,10 @@ body {
 }
 
 .tag-size-1 {
-  color: lightskyblue;
+  color: rgb(16, 55, 80);
   font-size: 15px;
+}
+
+.post-tags a{
+  padding: 3px;;
 }
